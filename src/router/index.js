@@ -1,21 +1,65 @@
 import { createRouter, createWebHistory } from "vue-router";
-import HomeView from "../views/HomeView.vue";
-
+import Homepage from "@/views/Homepage";
+import Policy from "@/views/Policy";
+import Process from "@/views/Process";
+import Info from "@/views/Info";
+import Box from "@/views/Process/concrete/Box";
+import Filler from "@/views/Process/concrete/Filler";
+import Bag from "@/views/Process/concrete/Bag";
+import Tape from "@/views/Process/concrete/Tape";
+import InfoIndustry from "@/views/Info/infoIndustry";
+import InfoCarbon from "@/views/Info/infoCarbon";
+import InfoForecast from "@/views/Info/infoForecast";
 const routes = [
   {
     path: "/",
     name: "home",
-    component: HomeView,
+    component: Homepage,
   },
   {
-    path: "/about",
-    name: "about",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
+    path: "/homepage",
+    component: Homepage,
   },
+  {
+    path: "/policy",
+    component: Policy,
+  },
+  {
+    path: "/process",
+    component: Process,
+  },
+  {
+    path: "/info",
+    component: Info,
+  },
+  {
+    path: "/info/industry",
+    component: InfoIndustry
+  },
+  {
+    path: "/info/carbon",
+    component: InfoCarbon
+  },
+  {
+    path: "/info/forecast",
+    component: InfoForecast
+  },
+  {
+    path:"/process/tape",
+    component:Tape
+  },
+  {
+    path:"/process/bag",
+    component:Bag
+  },
+  {
+    path:"/process/box",
+    component:Box
+  },
+  {
+    path:"/process/filler",
+    component:Filler
+  }
 ];
 
 const router = createRouter({
