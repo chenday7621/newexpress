@@ -25,12 +25,14 @@ export default {
 </script>
 
 <style scoped lang="less">
-
+//*{
+//  border: 1px solid red;
+//}
 div {
   position: absolute;
   width: 130px;
-  left: 3%;
-  top: 5%;
+  left: 1vw;
+  top: 1vh;
   display: flex;
   align-items: center;
   font-family: 'Inter';

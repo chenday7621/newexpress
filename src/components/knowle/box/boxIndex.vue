@@ -48,33 +48,33 @@ export default {
   margin-left: 140px;
   color: #f1f1f1;
   img{
-    width: 320px;
-    height: 320px;
+    width: 21vw;
+    height: 21vw;
   }
   .ch{
     font-family: 'Inter';
     font-style: normal;
     font-weight: 600;
-    font-size: 30px;
+    font-size: 2vw;
   }
   .en{
     font-family: 'Inter';
     font-style: normal;
     font-weight: 600;
-    font-size: 30px;
-    margin-top: 10px;
+    font-size: 2vw;
+    margin-top: 2vh;
   }
 }
 #right{
-  margin-left: 20px;
-  margin-top: 30px;
+  margin-left: 2vw;
+  margin-top: 3vw;
   color: #f1f1f1;
   .title{
     width: 230px;
     height: 80px;
     img{
-      width: 220px;
-      height: 80px;
+      width: 15vw;
+      height: 5vw;
     }
     span{
       position: absolute;
@@ -88,16 +88,16 @@ export default {
     text-align: center;
   }
   .content{
-    margin-top: 30px;
-    background: rgba(255, 255, 255, 0.35);
-    width: 700px;
-    height: 380px;
-    padding: 30px 80px;
+    margin-top: 5vh;
+    background-color: rgba(34, 85, 119, 0.5);
+    width:47vw;
+    height: 48vh;
+    padding: 5vh 10vh;
     font-family: '宋体';
     font-style: normal;
     font-weight: 400;
-    font-size: 25px;
-    line-height: 44px;
+    font-size: 1.6vw;
+    line-height: 2.8vw;
 
 
     text-indent: 2em;

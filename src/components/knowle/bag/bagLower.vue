@@ -65,38 +65,39 @@ export default {
 }
 
 #right{
-  margin: 30px 180px;
+  //margin: 30px 180px;
+  margin: 3vw 12vw;
   color: #f1f1f1;
   .title{
-    width: 260px;
-    height: 70px;
+    width: 5vw;
+    height: 5vw;
     font-family: 'Inter';
     font-weight: 600;
-    font-size: 30px;
+    font-size: 2vw;
 
     img{
-      width: 220px;
-      height: 80px;
+      width: 15vw;
+      height: 5vw;
     }
     span{
       position: absolute;
-      top: 15%;
-      left: 16%;
+      top: 16%;
+      left: 14.5%;
     }
     line-height: 70px;
     text-align: center;
   }
   .content{
     margin-top: 15px;
-    background: rgba(255, 255, 255, 0.35);
-    height: 380px;
+    background-color: rgba(34, 85, 119, 0.5);
+    height: 50vh;
     padding: 30px 80px;
     //width: 1030px;
     font-family: '宋体';
     font-style: normal;
     font-weight: 400;
-    font-size: 25px;
-    line-height: 44px;
+    font-size: 1.6vw;
+    line-height: 2.8vw;
 
     text-indent: 2em;
     overflow-y: scroll;
@@ -105,8 +106,10 @@ export default {
     }
 
     img{
-      width: 250px;
-      height: 250px;
+      //width: 250px;
+      //height: 250px;
+      width: 16vw;
+      height: 16vw;
     }
     .set{
       display: flex;

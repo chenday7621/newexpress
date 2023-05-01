@@ -41,64 +41,68 @@ export default {
   display: flex;
   flex-flow: column;
   align-items: center;
-  margin-top: 90px;
-  margin-left: 140px;
+  margin-top: 14vh;
+  margin-left: 10vw;
   color: #f1f1f1;
   img{
-    width: 320px;
-    height: 320px;
+    width: 20vw;
+    height: 20vw;
   }
   .ch{
     font-family: 'Inter';
     font-style: normal;
     font-weight: 600;
-    font-size: 30px;
+    font-size: 2vw;
   }
   .en{
     font-family: 'Inter';
     font-style: normal;
     font-weight: 600;
-    font-size: 30px;
-    margin-top: 10px;
+    font-size: 2vw;
+    margin-top: 2vh;
   }
 }
 #right{
-  margin-left: 20px;
-  margin-top: 40px;
+  margin-left: 2vw;
+  margin-top: 4vw;
 
   .title{
-    width: 230px;
-    height: 80px;
+    width: 5vw;
+    height: 5vw;
     img{
-      width: 220px;
-      height: 80px;
+      width: 15vw;
+      height: 5vw;
     }
     span{
       position: absolute;
-      top: 16%;
+      top: 17%;
       left: 35%;
     }
     font-family: 'Inter';
     font-weight: 600;
-    font-size: 30px;
+    font-size: 2vw;
     color: #f1f1f1;
     line-height: 80px;
     text-align: center;
   }
   .content{
-    margin-top: 15px;
+    margin-top: 1.5vw;
     color: #f1f1f1;
-    background: rgba(255, 255, 255,0.35);
-    width: 700px;
-    height: 350px;
+    background-color: rgba(34, 85, 119, 0.5);
+    //background-image: url("@/assets/imgs/conbg.png");
+    //background-size:100% 100%;
+    //background-attachment:fixed;
+    //background-size: cover;
+    width:45vw;
+    height: 45vh;
     padding: 20px 80px;
     display: flex;
     align-items: center;
     font-family: '宋体';
     font-style: normal;
     font-weight: 400;
-    font-size: 25px;
-    line-height: 44px;
+    font-size: 1.7vw;
+    line-height: 2.8vw;
 
     text-indent: 2em;
   }

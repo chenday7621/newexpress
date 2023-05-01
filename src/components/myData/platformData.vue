@@ -1,6 +1,6 @@
 <template>
   <div class="echarts-box">
-    <div id="platchart" :style="{ width: '500px', height: '300px' }"></div>
+    <div id="platchart"  style="width:30vw; height:40vh"></div>
   </div>
 </template>
 
@@ -10,20 +10,18 @@ import {onMounted,onUnmounted} from "vue";
 
 export default {
   setup() {
-    /// 声明定义一下echart
-    let echart = echarts;
 
     onMounted(() => {
       initChart();
     });
 
     onUnmounted(() => {
-      echart.dispose;
+      echarts.dispose;
     });
 
     // 基础配置一下Echarts
     function initChart() {
-      let chart = echart.init(document.getElementById("platchart"));
+      let chart = echarts.init(document.getElementById("platchart"));
       // 把配置和数据放这里
       chart.setOption({
         dataset: {
@@ -39,7 +37,12 @@ export default {
             [37, 2500, '阿里巴巴'],
           ]
         },
-        grid: { containLabel: true },
+        grid: {
+          x: '15%',
+          y: '15%',
+          x2: '10%',
+          y2: '20%'
+        },
         title: {
           text: '主流网购平台',
           left: "center",
@@ -73,14 +76,18 @@ export default {
         visualMap: {
           orient: 'horizontal',
           left: 'center',
+          // align:"auto",
           min: 10,
           max: 100,
-          text: ['High Score', 'Low Score'],
+          text: ['25000', '0'],
           // Map the score column to color
           dimension: 0,
           inRange: {
             color: ['rgb(131,181,210)', 'rgb(85,154,197)', 'rgb(11,97,162)']
           },
+          textStyle: {
+            color:'#fff'
+          }
         },
         series: [
           {
@@ -93,14 +100,16 @@ export default {
             }
           }
         ]
-      });
-      window.onresize = function() {
-        //自适应大小
+      })
+      window.addEventListener("resize", function() {
         chart.resize();
-      };
+      });
     }
-
-    return { initChart };
+    // window.addEventListener("resize", function() {
+    //   let charts = echart.init(document.querySelector(`#platchart`));
+    //   charts.resize();
+    // });
+    return { };
   }
 };
 </script>
@@ -108,8 +117,11 @@ export default {
 <style scoped>
 .echarts-box{
   display: inline-block;
-  position: fixed;
-  top: 400px;
-  left: 20px;
+  position: absolute;
+  left:1%;
+  bottom: 3%;
+  background-image: url("@/assets/imgs/center_map.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
 }
 </style>

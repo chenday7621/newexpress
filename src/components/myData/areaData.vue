@@ -1,15 +1,17 @@
 <template>
   <div class="echarts-box">
-    <div id="areachart" :style="{ width: '500px', height: '300px' }"></div>
+    <div id="areachart" style="width:30vw; height:40vh"></div>
 <!--    <div class="btns">-->
-    <select v-model="mySelect" @change="changeSelect">
-      <option value="0">同城</option>
-      <option value="1">异地</option>
-    </select>
+<!--    <select v-model="mySelect" >-->
+<!--      <option value="0">同城</option>-->
+<!--      <option value="1">异地</option>-->
+<!--    </select>-->
+    <div class="btn" @click="changeSelect">
+      {{content}}
+    </div>
       <ul>
         <li v-for="item in options" @click="changeBtn" data-name="item">{{item}}</li>
       </ul>
-<!--    </div>-->
   </div>
 </template>
 
@@ -41,7 +43,16 @@ export default {
       })
     }
 
-    function changeSelect() {
+    let content=ref('异地')
+    function changeSelect(e) {
+      // console.log(e.target.innerText);
+      if (e.target.innerText==='异地'){
+        mySelect.value=1
+        content.value='同城'
+      }else{
+        mySelect.value=0
+        content.value='异地'
+      }
       // console.log(mySelect.value);
       let newData=areaList[mySelect.value].data[myOption.value].data
       // console.log(newData);
@@ -101,6 +112,12 @@ export default {
           },top: 10,
           left: "center",
           subtext: ''
+        },
+        grid: {
+          x: '15%',
+          y: '15%',
+          x2: '5%',
+          y2: '25%'
         },
         xAxis: {
           data:dataX,
@@ -164,76 +181,76 @@ export default {
           }
         ]
       });
-      window.onresize = function() {
-        //自适应大小
+      window.addEventListener("resize", function() {
         chart.resize();
-      };
-      const zoomSize = 6;
-      chart.on('click', function (params) {
-        console.log(dataAxis[Math.max(params.dataIndex - zoomSize / 2, 0)]);
-        chart.dispatchAction({
-          type: 'dataZoom',
-          startValue: dataAxis[Math.max(params.dataIndex - zoomSize / 2, 0)],
-          endValue:
-            dataAxis[Math.min(params.dataIndex + zoomSize / 2, data.length - 1)]
-        });
       });
     }
 
-    return { initChart, mySelect,options,changeSelect,changeBtn};
+    return {  mySelect,options,changeSelect,changeBtn,content};
   }
 };
 </script>
 
 <style scoped>
-.echarts-box{
-  display: inline-block;
-  position: relative;
-  left:32%;
-}
-ul{
-  position: absolute;
-  bottom: -15%;
-}
-li{
-  list-style: none;
-  color: #262626;
-  display: inline-block;
-  height: 30px;
-  background-color: rgb(136, 222, 239,0.8);
-  text-align: center;
-  line-height: 30px;
-  padding:7px;
-
-  margin-left: 40px;
-}
-li:hover{
-  background-color: rgba(80, 216, 243, 0.8);
-  cursor: pointer;
-}
-select{
-  background: rgba(0,0,0,0);
-  width: 64px;
-  height: 32px;
-  font-size: 14px;
+.btn{
+  width: 13%;
+  height:4vh;
+  line-height: 4vh;
+  font-size: 1em;
   color: white;
   text-align: center;
-  border: 1px #817e7e solid;
-  border-radius: 5px;
+  border: 2px solid rgba(61, 86, 137);
   position: absolute;
   left: 85%;
   top: 2%;
 }
-option{
-  color: black;
-  background: #A6E1EC;
-  line-height: 20px;
+.btn:hover{
+  background-color: rgba(61, 70, 133, 0.8);
+  cursor: pointer;
 }
-select:focus{
-  border: 2px #ddd solid;
-  box-shadow: 0 0 5px 1px #869c9f;
+
+.echarts-box{
+  display: inline-block;
+  position: absolute;
+  right:1%;
+  top: 9%;
+  background-image: url("@/assets/imgs/center_map.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
 }
-option:hover{
-  background: #EBCCD1;
+ul{
+  position: absolute;
+  bottom: -16%;
+  right: 1%;
+  width: 88%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+li{
+  list-style: none;
+  /*color: #262626;*/
+  color: #dddddd;
+  display: inline-block;
+  /*height: 50%;*/
+  width: 26%;
+  height: 5vh;
+  line-height: 5vh;
+  /*background-color: rgb(136, 222, 239,0.8);*/
+  background: url("@/assets/imgs/btn.png") no-repeat center center;
+  /*background-attachment: fixed;*/
+  background-size: cover;
+  text-align: center;
+  font-size: 1em;
+  /*line-height: 30%;*/
+  /*padding:1em;*/
+  /*margin: 2%;*/
+}
+/**{*/
+/*  border: 1px solid red;*/
+/*}*/
+li:hover{
+  /*background-color: rgba(80, 216, 243, 0.8);*/
+  cursor: pointer;
 }
 </style>

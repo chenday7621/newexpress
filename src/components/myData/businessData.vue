@@ -1,7 +1,7 @@
 <template>
   <div class="echarts-box">
-    <div id="buschart" :style="{ width: '500px', height: '300px' }"></div>
-    <button  @click="changeBtn">{{text}}</button>
+    <div id="buschart" style="width:30vw; height:40vh"></div>
+    <div class="btn" @click="changeBtn">{{text}}</div>
   </div>
 </template>
 
@@ -12,12 +12,11 @@ import {ref} from 'vue'
 import incomeJson from '@/assets/data/income.json'
 export default {
   setup() {
-    /// 声明定义一下echart
-    let echart = echarts;
+    console.log(1);
+    // let chart = echarts.init(document.getElementById("buschart"));
     const selects=['全国业务收入','邮政业务收入']
     console.log(incomeJson);
     let text=ref(selects[1])
-
     function changeBtn(e){
       console.log(e.target.innerText);
       let newData
@@ -31,7 +30,7 @@ export default {
         newText='全国快递业务收入发展'
         text.value=selects[1]
       }
-      let chart = echart.init(document.getElementById("buschart"));
+      // let chart = echart.init(document.getElementById("buschart"));
       chart.setOption({
         series:[
           {data:newData}
@@ -46,12 +45,13 @@ export default {
     });
 
     onUnmounted(() => {
-      echart.dispose;
+      console.log(0);
+      echarts.dispose;
     });
 
     // 基础配置一下Echarts
     function initChart() {
-      let chart = echart.init(document.getElementById("buschart"));
+      var chart = echarts.init(document.getElementById("buschart"));
       // 把配置和数据放这里
       chart.setOption({
         title: {
@@ -69,6 +69,12 @@ export default {
             top: 10,
             left: "center",
           },
+        grid: {
+          x: '15%',
+          y: '15%',
+          x2: '10%',
+          y2: '15%'
+        },
         xAxis: {
           type: 'category',
           data: incomeJson[2].data,
@@ -96,21 +102,19 @@ export default {
         },
         series: [
           {
-            data: [2045.4, 2769.6, 3974.4, 4957.1, 6038.4, 7497.8, 8795.4],
+            data: incomeJson[0].data,
             type: 'line',
-            color: "rgb(115, 165, 204)"
+            color: "rgb(183,144,86)"
           }
         ],
         tooltip: {
           trigger: 'axis'
         }
     });
-      window.onresize = function() {
-        //自适应大小
+      window.addEventListener("resize", function() {
         chart.resize();
-      };
+      });
     }
-
     return { initChart ,text,changeBtn};
   }
 };
@@ -119,16 +123,32 @@ export default {
 <style scoped>
 .echarts-box{
   display: inline-block;
-}
-button{
-  background-color: transparent;
-  border: 1px solid #b2ecf6;
-  /*position: absolute;*/
-  color: #dddddd;
+  background-image: url("@/assets/imgs/center_map.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
   position: absolute;
-  left: 20%;
+  left:1%;
+  top: 9%;
 }
-button:hover{
-  background-color:rgba(124, 165, 207,0.3) ;
+.btn{
+  color: #dddddd;
+  height: 6vh;
+  line-height: 6vh;
+  width: 9vw;
+  background: url("@/assets/imgs/btn.png") no-repeat center center;
+  /*background-attachment: fixed;*/
+  /*background-size: cover;*/
+  background-size: 100% 100%;
+  text-align: center;
+  position: absolute;
+  font-size: 1em;
+  left: 70%;
+  top: 102%;
 }
+.btn:hover{
+  cursor: pointer;
+}
+/**{*/
+/*  border: 1px solid red;*/
+/*}*/
 </style>

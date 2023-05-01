@@ -47,33 +47,39 @@ export default {
 </script>
 <style scoped>
 .bg{
-  background-image: url("@/assets/imgs/线框.png") ;
+  /*background-image: url("@/assets/imgs/线框.png") ;*/
   /*background-image: url("@/assets/imgs/plist.png");*/
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  opacity: 0.8;
-  width: 32%;
+  background: rgba(226, 231, 236, 0.5);
+  /*background-repeat: no-repeat;*/
+  /*background-size: 100% 100%;*/
+  /*opacity: 0.8;*/
+  width: 30%;
   margin: 0 auto;
-  box-shadow: 0 0 15px 20px inset rgba(67, 172, 200, 0.2);
+  /*box-shadow: 0 0 15px 20px inset rgba(67, 172, 200, 0.2);*/
 
   /*text-align: center;*/
   overflow-y: scroll;
-  height: 630px;
+  height: 90vh;
+  position: absolute;
+  right: 0;
 }
 h1{
-  color: #6ee1f5;
+  /*color: black;*/
   margin-top: 30px;
   margin-left: auto;
+  color: black;
+  font-family: '华文中宋';
+  font-size: 2.5em;
 }
 .title{
   text-align: center;
 }
 li{
   list-style: none;
-  color: rgb(203, 243, 241);
+  /*color: rgb(203, 243, 241);*/
   min-height: 35px;
   line-height: 30px;
-  border-bottom: 1px solid rgba(192, 192, 192,0.5);
+  border-bottom: 1px solid rgba(133, 131, 131, 0.5);
   padding-left:15px ;
 
 }
@@ -118,14 +124,14 @@ select{
   width: 84px;
   height: 32px;
   font-size: 14px;
-  color: rgba(255, 255, 255, 0.89);
+  color: black;;
   text-align: center;
   border: 1px #817e7e solid;
   border-radius: 5px;
 
   position: absolute;
-  right: 8%;
-  top: 18%;
+  right: 6%;
+  top: 8%;
 }
 option{
   color: black;
@@ -139,4 +145,7 @@ select:focus{
 option:hover{
   background: #EBCCD1;
 }
+/**{*/
+/*  border: 1px solid red;*/
+/*}*/
 </style>

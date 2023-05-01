@@ -12,17 +12,17 @@
     "axios": "^1.3.6",
     "core-js": "^3.8.3",
     "echarts": "4.8.0",
+    "echarts-gl": "1.1.2",
     "element-plus": "^2.3.3",
     "particles.vue3": "1.22.0",
-    "swiper": "8",
     "three": "^0.151.3",
     "tsparticles": "^2.9.3",
     "vue": "^3.2.13",
     "vue-axios": "^3.5.2",
-    "vue-particles": "^1.0.9",
+    "vue-lottie": "^0.2.1",
     "vue-router": "^4.0.3",
-    "vuex": "^4.0.0",
-    "wowjs": "^1.1.3"
+    "vue3-lottie": "^2.5.0",
+    "vuex": "4"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",

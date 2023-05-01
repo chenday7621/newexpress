@@ -1,19 +1,86 @@
 <template>
-<div id="mapchart" style="width:600px; height:600px"></div>
+  <div class="main">
+    <div id="mapchart" style="width:45%; height:88%"></div>
+    <div class="head">
+      <div class="diver"  :class="{'active1':rotFlag1,'active2':rotFlag2}">
+        <span class="title">全国总业务量(万件)<br><span class="number">{{sumData}}</span></span>
+      </div>
+      </div>
+    <div class="choose">
+      <ul>
+        <li v-for="o in options" :key="o.index" @click="change(o)" :class="{active:myYear===o}">{{o}}</li>
+      </ul>
+    </div>
+  </div>
 </template>
 <script>
 import * as echarts from 'echarts'
 import china from '../../../public/map/china.json'
-import { onMounted } from "vue";
+import { onMounted,ref } from "vue";
+import countryJSON from '../../assets/data/countryData.json'
 echarts.registerMap('china',china)
 export default {
   setup(){
+    //动画
+    let rotFlag1 =ref(true)
+    let rotFlag2 =ref(false)
+    //年份
+    let years=[2017,2018,2019,2020,2021,2022]
+    let myYear=ref(2017)
+
+    //选项
+    let options=[]
+    for(let i=0;i<countryJSON[1].data.length;i++){
+      options.push(countryJSON[1].data[i].time-0)
+    }
+    console.log(options);
+    //总数据
+    let sumData=ref(countryJSON[0].data[myYear.value-2017])
+    // console.log(sumData.value);
+
+    //数据
+    let myData=countryJSON[1].data[myYear.value-2017].data
+    // console.log(myData);
+    let newData=[]
+    for(let i=0;i<myData.length;i++){
+      let t={
+        name:myData[i].area,
+        value:myData[i].data
+      }
+      newData.push(t)
+    }
+
+    function change(n){
+      myYear.value=n
+      myData=countryJSON[1].data[n-2017].data
+      //更新地图数据
+      let newData=[]
+      for(let i=0;i<myData.length;i++){
+        let t={
+          name:myData[i].area,
+          value:myData[i].data
+        }
+        newData.push(t)
+      }
+      // console.log(newData);
+      let charts = echarts.init(document.querySelector(`#mapchart`));
+      charts.setOption({
+        series:{
+          data:newData
+        }
+      })
+      //更新总量数据
+      sumData.value=countryJSON[0].data[n-2017]
+      //更新动画数据
+      rotFlag1.value=!rotFlag1.value
+      rotFlag2.value=!rotFlag2.value
+      console.log(rotFlag1.value,rotFlag2.value);
+    }
+
+
     onMounted(()=>{
       initCharts()
     })
-    function randomData() {
-      return Math.round(Math.random() * 500);
-    }
     function initCharts(){
       let charts = echarts.init(document.querySelector(`#mapchart`));
       charts.setOption({
@@ -30,19 +97,8 @@ export default {
             { start: 200000, end: 500000 }, { start: 10000, end: 200000 },
             { start: 10000, end: 100000 }, { start: 0, end: 10000 },
           ],
-          // text:['高','低'],// 文本，默认为数值文本
-          // color: ['#65A2D9', '#E09107', '#A3E00B']
-          // color: ['rgb(109, 31, 148)', 'rgb(96, 51, 182)', 'rgb(96, 51, 182)', 'rgb(121, 95, 250)', 'rgb(102, 139, 255)', 'rgb(88, 203, 255)']
-          // color: [
-          //   '#c3d7df',
-          //   '#5cb3cc',
-          //   '#8abcd1',
-          //   '#66a9c9',
-          //   '#2f90b9',
-          //   '#1781b5',
-          // ],
           inRange: {
-            color: ["rgba(147, 235, 248, 0)", "rgba(147, 235, 248, .3)"], //取值范围的颜色
+            color: ["rgba(147, 235, 248, 0)", "rgba(147, 235, 248,0.9)"], //取值范围的颜色
           },
           areaColor: {
             type: 'radial',
@@ -77,6 +133,13 @@ export default {
               textStyle: {
                 color: '#FFF',
               },
+              normal: {
+                areaColor: '#01215c',
+                borderWidth: 3,//设置外层边框
+                borderColor:'#9ffcff',
+                shadowColor: 'rgba(0,54,255, 1)',
+                shadowBlur: 150
+              },
               areaColor: {
                 type: 'radial',
                 x: 0.5,
@@ -94,13 +157,13 @@ export default {
                 ],
                 globalCoord: false, // 缺为 false
               },
-              shadowColor: 'rgba(137,218,246,0.3)',
-              shadowOffsetX: -2,
-              shadowOffsetY: 2,
-              shadowBlur: 10,
+              shadowColor: 'rgba(171,223,241,0.5)',
+              shadowOffsetX: -5,
+              shadowOffsetY: 5,
+              shadowBlur: 100,
               emphasis: {
                 areaColor: '#389BB7',
-                borderWidth: 1,
+                borderWidth: 2,
               },
             },
             /*itemStyle: {//地图区域的多边形 图形样式
@@ -126,45 +189,123 @@ export default {
               }
             },*/
             top: "100",//组件距离容器的距离
-            data: [
-              { name: '北京', value: '221030' }, { name: '天津', value: '123390' },
-              { name: '上海', value: '374137' }, { name: '重庆', value: '97936' },
-              { name: '河北', value: '506015' }, { name: '河南', value: '435552' },
-              { name: '云南', value: '84190' }, { name: '辽宁', value: '164328' },
-              { name: '黑龙江', value: '60491' }, { name: '湖南', value: '197803' },
-              { name: '安徽', value: '312664' }, { name: '山东', value: '559785' },
-              { name: '新疆', value: '16185' }, { name: '江苏', value: '860653' },
-              { name: '浙江', value: '2278148' }, { name: '江西', value: '160091' },
-              { name: '湖北', value: '269341' }, { name: '广西', value: '102758' },
-              { name: '甘肃', value: '18457' }, { name: '山西', value: '78131' },
-              { name: '内蒙古', value: '26086' }, { name: '陕西', value: '111806' },
-              { name: '吉林', value: '62197' }, { name: '福建', value: '415012' },
-              { name: '贵州', value: '39787' }, { name: '广东', value: '2945749' },
-              { name: '青海', value: '3686' }, { name: '西藏', value: '1485' },
-              { name: '四川', value: '278269' }, { name: '宁夏', value: '9963' },
-              { name: '海南', value: '14503' }, { name: '台湾', value: randomData() },
-              { name: '香港', value: randomData() }, { name: '澳门', value: randomData() }
-            ]
+            data: newData
           }
         ],
       });
+      window.addEventListener("resize", function() {
+        charts.resize();
+      });
     }
-    // window.addEventListener("resize", function() {
-    //   let charts = echarts.init(document.querySelector(`#mapchart`));
-    //   charts.resize();
-    // });
+
+    return{
+      change,options,sumData,myYear,years,
+      rotFlag1,rotFlag2
+    }
   }
 
 }
 
 </script>
 
-<style scoped>
+<style scoped lang="less">
+.active{
+  color: rgb(148, 238, 243);
+  font-size: 1.5rem;
+  font-weight: bold;
+}
 #mapchart{
   display: inline-block;
   position: absolute;
-  top: 100px;
-  left: 420px;
+  top: 10%;
+  left: 27%;
+}
+//span{
+//  display: block;
+//}
+.diver{
+  font-size: 1.3vw;
+  padding: 5%;
+  .number{
+    color: #00d2ee;
+    font-size: 2.6vw;
+  }
+  box-shadow: 0 0 20px #00e0e9 inset;
+  color: #fff;
+  /* border: 2px solid #00E0E9; */
+  background: linear-gradient(to left, #00e0e9, #00e0e9) left top no-repeat,
+  linear-gradient(to left, #00e0e9, #00e0e9) left top no-repeat,
+  linear-gradient(to left, #00e0e9, #00e0e9) right top no-repeat,
+  linear-gradient(to left, #00e0e9, #00e0e9) right top no-repeat,
+  linear-gradient(to left, #00e0e9, #00e0e9) left bottom no-repeat,
+  linear-gradient(to left, #00e0e9, #00e0e9) left bottom no-repeat,
+  linear-gradient(to left, #00e0e9, #00e0e9) right bottom no-repeat,
+  linear-gradient(to left, #00e0e9, #00e0e9) right bottom no-repeat;
+  background-size: 2px 20px, 20px 2px;
+}
+.head{
+  position: absolute;
+  top: 12%;
+  width: 15vw;
+  left: 42%;
+  text-align: center;
+  perspective: 800px;
+  transform-style: preserve-3d;
+}
+
+.choose{
+  text-align: center;
+  width: 30vw;
+  position: absolute;
+  right: 36%;
+  bottom: 7%;
+  display: inline-block;
+}
+//*{
+//  border: 1px solid red;
+//}
+ul{
+  display: flex;
+  flex-direction: row;
+  background-color: rgba(255, 255, 255,0.2);
+  line-height: 5vh;
+}
+li{
+  display: inline-block;
+  width: 5vw;
+  color: #dddddd;
+  &:hover{
+    background-color: rgba(131, 181, 210, 0.4);
+    cursor: pointer;
+  }
+}
+@keyframes ani1 {
+  50%{
+    transform: rotateY(180deg);
+  }
+  100%{
+    transform: rotateY(0deg);
+  }
+}
+@keyframes ani2 {
+  50%{
+    transform: rotateY(-180deg);
+  }
+  100%{
+    transform: rotateY(0deg);
+  }
+}
+.active1 {
+  /*旋转180度*/
+  animation: ani1;
+  animation-duration: 1s;
+  /*transform: rotateY(180deg);*/
+}
+.active2 {
+  /*旋转180度*/
+  animation: ani2;
+  animation-duration: 1s;
+  /*transform: rotateY(-180deg);*/
 }
 </style>
 

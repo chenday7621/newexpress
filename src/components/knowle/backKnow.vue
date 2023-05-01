@@ -29,7 +29,8 @@ export default {
 div {
   position: absolute;
   width: 130px;
-  left: 3%;
+  left: 1vw;
+  top: 1vh;
   display: flex;
   align-items: center;
   font-family: 'Inter';

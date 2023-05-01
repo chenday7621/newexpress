@@ -1,13 +1,13 @@
 <template>
+
     <div id="root">
       <video id="mp4" autoplay muted loop>
-<!--        <source src="https://lf3-cdn-tos.bytescm.com/obj/eden-cn/lmeh7pfuho/campus/campus_intro_20200522.mp4" type="video/mp4">-->
         <source src="@/assets/imgs/hombg.mp4" type="video/mp4">
       </video>
 <!--      <background-particles/>-->
       <div id="title1">
-        <h1>《绿箱循》</h1>
-        <h2>——基于“绿色革命”政策的快递行业发展及包装回收数据可视化平台</h2>
+        <h1>《 绿 箱 循 》</h1>
+        <div id="num2"><h2>——基于“绿色革命”政策的快递行业发展及包装回收数据可视化平台</h2></div>
       </div>
       <img id="icon1" src="@/assets/imgs/homicon.png" alt="">
       <div id="title2">
@@ -28,68 +28,58 @@
           </div>
         </div>
         </div>
+
+      <div id="title3">
+        <hr/>
+        <div class="fir">
+          <span>联系我们 | </span>
+          <span>邮箱：Lvxiang_xun@163.com | </span>
+          <span>地址：北京市海淀区中关村南大街27号</span>
+        </div>
+        <div class="sec">
+          <span>特别声明 | 本平台所使用的地图均来自echarts官方资源库，地图网址为https://github.com/apache/echarts/tree/master/test/data/map/json</span>
+        </div>
+      </div>
       </div>
 
 
 </template>
 <script>
-import {WOW} from 'wowjs'
-import { defineAsyncComponent, defineComponent, onMounted } from "vue";
-import { particles } from "./config/particles"
+import { defineAsyncComponent, defineComponent } from "vue";
 export default defineComponent({
   name:"Homepage",
   components: {
-    BackgroundParticles: defineAsyncComponent(() => import('../components/Particles')),
-
   },
   setup(){
-    onMounted(()=>{
-      var wow = new WOW({
-        boxClass: "wow", // animated element css class (default is wow)
-        animateClass: "animated", // animation css class (default is animated)
-        offset: -10, // distance to the element when triggering the animation (default is 0)
-        mobile: true, // trigger animations on mobile devices (default is true)
-        live: true, // act on asynchronously loaded content (default is true)
-      });
-      wow.init();
-    })
 
     function go(target){
       this.$router.push('/'+target)
     }
     return{
-      particles,go
+      go
     }
   }})
 </script>
 <style lang="less" scoped>
 *{
-  //border: 2px solid red!important;
   font-family: "华文中宋";
-  color: #FFFFFF;
 }
 video{
   position: fixed;
   z-index: -999;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  min-height: 800px;
+  //min-height: 800px;
   object-fit: fill;
 }
 #icon1{
   position: absolute;
-  top: 22%;
-  width: 400px;
-  height: 400px;
+  top: 32%;
+  width: 25vw;
+  height: 50vh;
   transform: rotateY(180deg);
 }
 #root{
-  /*width: 100%;*/
-  /*min-height: 100%;*/
-  /*height: 100vh;*/
-  /*overflow: hidden;*/
-  /*background-color: #0F2133;*/
   position: relative;
 }
 body{
@@ -97,20 +87,21 @@ body{
   padding: 0;
 }
 .options{
-  width: 900px;
-  height: 150px;
-  margin: 0 auto;
+  width: 70vw;
+  height: 20vh;
+  margin: 10vw auto 0 auto;
   display: flex;
   flex-direction: row;
   justify-content: center;
   img{
-    width: 340px;
-    //height: 250px;
+    width: 42vh;
+    height: 32vh;
+    overflow: hidden;
   }
   span{
     position: relative;
-    top:-170px;
-    font-size: 48px;
+    top:-20vh;
+    font-size: 2.6vw;
     &:hover{
       cursor: pointer;
     }
@@ -118,34 +109,56 @@ body{
   .opti{
     margin-left: 30px;
   }
-
 }
+//*{
+//  border: 1px solid red;
+//}
 #title1{
-  height: 700px;
-  text-align: center;
+  color: #FFFFFF;
+  height: 83vh;
   h1{
-    animation: fadeIn; /* referring directly to the animation's @keyframe declaration */
-    animation-duration: 3s; /* don't forget to set a duration! */
-    font-size: 80px;
+    animation: fadeIn;
+    animation-duration: 3s;
+    //font-size: 80px;
+    font-size: 5vw;
     color: #FFFFFF;
     margin-top: 0;
-    padding-top:150px;;
+    padding-top:150px;
+    text-align: center;
   }
   h2{
-    font-size: 60px;
+    font-size:2.6vw;
+    width: 65vw;
+    text-align: right;
+    margin-left: 18%;
   }
 }
 
 #title2{
-  height: 700px;
+  color: #FFFFFF;
+  height: 23vh;
   text-align: center;
   h1{
     margin-top: 200px;
-    font-size: 75px;
+    font-size: 4vw;
   }
   h2{
-    font-size: 40px;
+    font-size: 2vw;
   }
 }
 
+#title3{
+  hr{
+    border: none;
+    height:1px;
+    background-color: #a19e9e;
+  }
+  height: 10vh;
+  line-height: 4vh;
+  color: #a19e9e;
+  width: 100%;
+  position: absolute;
+  bottom: -50%;
+  text-align: center;
+}
 </style>

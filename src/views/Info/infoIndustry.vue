@@ -22,11 +22,14 @@ export default {
 }
 </script>
 <style scoped>
-
+/**{*/
+/*  border: 1px solid red;*/
+/*}*/
 .mybody{
-  background-image: url("@/assets/imgs/contentbg.png");
   background-size: 100% 100%;
   background-attachment: fixed;
-  height: 600px;
+  /*height: 600px;*/
+  width : 100%;
+  height : 100%;
 }
 </style>

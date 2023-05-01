@@ -44,40 +44,40 @@ export default {
   display: flex;
   flex-flow: column;
   align-items: center;
-  margin-top: 90px;
-  margin-left: 140px;
+  margin-top: 16vh;
+  margin-left: 10vw;
   color: #f1f1f1;
   font-family: 'Inter';
   img{
-    width: 320px;
-    height: 320px;
+    width: 20vw;
+    height: 20vw;
   }
   .ch{
     font-style: normal;
     font-weight: 600;
-    font-size: 30px;
+    font-size: 2vw;
   }
   .en{
     font-style: normal;
     font-weight: 600;
-    font-size: 30px;
+    font-size: 2vw;
     margin-top: 10px;
   }
 }
 #right{
-  margin-left: 20px;
-  margin-top: 40px;
+  margin-left: 2vw;
+  margin-top: 3vw;
   color: #f1f1f1;
   .title{
-    width: 230px;
-    height: 80px;
+    width: 5vw;
+    height: 5vw;
     img{
-      width: 220px;
-      height: 80px;
+      width: 15vw;
+      height: 5vw;
     }
     span{
       position: absolute;
-      top: 16%;
+      top: 15%;
       left: 35%;
     }
     font-family: 'Inter';
@@ -88,15 +88,15 @@ export default {
   }
   .content{
     margin-top: 20px;
-    background: rgba(255, 255, 255, 0.35);
-    width: 700px;
-    height: 350px;
+    background-color: rgba(34, 85, 119, 0.5);
+    width:47vw;
+    height: 45vh;
     padding: 30px 60px 30px 80px;
     font-family: '宋体';
     font-style: normal;
     font-weight: 400;
-    font-size: 25px;
-    line-height: 44px;
+    font-size: 1.6vw;
+    line-height: 2.8vw;
 
     overflow-y: scroll;
     text-indent: 2em;

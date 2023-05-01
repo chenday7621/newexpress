@@ -3,7 +3,7 @@
     <bg/>
     <backHome/>
     <div class="myTitle">
-      快递包装材料科普
+      快 递 包 装 材 料 科 普
     </div>
     <div class="body">
       <ul>
@@ -40,7 +40,7 @@ components:{
 </script>
 <style scoped lang="less">
 .myTitle{
-  font-family: 'Inter';
+  font-family: '华文中宋';
   font-weight: 600;
   font-size: 70px;
   color: #f1f1f1;

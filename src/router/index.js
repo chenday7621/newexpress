@@ -7,9 +7,6 @@ import Box from "@/views/Process/concrete/Box";
 import Filler from "@/views/Process/concrete/Filler";
 import Bag from "@/views/Process/concrete/Bag";
 import Tape from "@/views/Process/concrete/Tape";
-import InfoIndustry from "@/views/Info/infoIndustry";
-import InfoCarbon from "@/views/Info/infoCarbon";
-import InfoForecast from "@/views/Info/infoForecast";
 const routes = [
   {
     path: "/",
@@ -32,18 +29,7 @@ const routes = [
     path: "/info",
     component: Info,
   },
-  {
-    path: "/info/industry",
-    component: InfoIndustry
-  },
-  {
-    path: "/info/carbon",
-    component: InfoCarbon
-  },
-  {
-    path: "/info/forecast",
-    component: InfoForecast
-  },
+
   {
     path:"/process/tape",
     component:Tape

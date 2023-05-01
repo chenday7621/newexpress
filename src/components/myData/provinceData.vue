@@ -1,24 +1,26 @@
 <template>
   <div class="echarts-box">
-    <ul>
-      <li>
-        <select v-model="myYear" @change="changeYear">
-          <option v-for="y in years" :value="y" :key="y.index">{{y}}</option>
-        </select>
-      </li>
-      <li>
-        <select v-model="myType" @change="changeType">
-          <option value="0">收入</option>
-          <option value="1">业务量</option>
-        </select>
-      </li>
-      <li>
-        <select v-model="myOption" @change="handleChange">
-          <option v-for="o in options" :value="o.ename" :key="o.index">{{o.name}}</option>
-        </select>
-      </li>
-    </ul>
-    <div id="provchart" :style="{ width: '250px', height: '300px' }"></div>
+    <div class="header">
+      <ul>
+        <li>
+          <select v-model="myYear" @change="changeYear">
+            <option v-for="y in years" :value="y" :key="y.index">{{y}}</option>
+          </select>
+        </li>
+        <li>
+          <select v-model="myType" @change="changeType">
+            <option value="0">收入</option>
+            <option value="1">业务量</option>
+          </select>
+        </li>
+        <li>
+          <select v-model="myOption" @change="handleChange">
+            <option v-for="o in options" :value="o.ename" :key="o.index">{{o.name}}</option>
+          </select>
+        </li>
+      </ul>
+    </div>
+    <div id="provchart" style="width:18vw; height:35vh"></div>
     <div id="table">
       <table>
         <tr>
@@ -42,7 +44,9 @@ import * as echarts from "echarts";
 import { onMounted, onUnmounted, reactive } from "vue";
 import cityJSON from '@/assets/data/cityData.json'
 import {ref} from "vue";
+import { Select } from "@element-plus/icons-vue";
 export default {
+  components: { Select },
   setup() {
     let myOption=ref('zhejiang')
     const options=[
@@ -111,15 +115,6 @@ export default {
       myData.value=cityData[myYear.value-2017].data[myType.value].data
       // console.log(myData.value);
 
-
-      // let charts = echarts.init(document.querySelector(`#provchart`));
-      // charts.setOption({
-      //   series:[
-      //     {
-      //       data: myData.value
-      //     }
-      //   ]
-      // })
       setChart()
 
     }
@@ -151,6 +146,9 @@ export default {
           min: 38000,
           max: 4500000,
           text: ["高", "低"],
+          textStyle:{
+            color:'#dddddd'
+          },
           inRange: {
             color: ['rgb(131,181,210)', 'rgb(51,114,154)', 'rgb(5,62,105)']
           }
@@ -171,7 +169,11 @@ export default {
                 show: false
               }
             },
-            data: myData.value //数据
+            data: myData.value, //数据
+            itemStyle: {
+              borderColor: 'rgb(131,181,210)',
+              areaColor: 'transparent'  //这里是重点
+            },
           }
         ]
       });
@@ -179,6 +181,11 @@ export default {
         charts.resize();
       });
     }
+
+    // window.addEventListener("resize", function() {
+    //   let charts = echarts.init(document.querySelector(`#provchart`));
+    //   charts.resize();
+    // });
 
     return{
       options,myOption,handleChange,
@@ -190,26 +197,71 @@ export default {
 };
 </script>
 
-<style scoped>
-/**{*/
-/*  border: 1px solid red;*/
-/*}*/
+<style scoped lang="less">
+//*{
+// border: 1px solid red;
+//}
 .echarts-box{
   display: inline-block;
+  width: 30%;
   position: absolute;
-  width: 550px;
-  right:10px;
-  bottom: 10px;
+  right:1%;
+  bottom: 3%;
+  background-image: url("@/assets/imgs/center_map.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  height:40vh
 }
 #table{
-  height: 300px;
-  width: 220px;
+  color: #dddddd;
+  height: 90%;
+  width: 43%;
   display: inline-block;
   overflow-y: scroll;
-  background-color: #dddddd;
+  background-color: transparent;
+  border: 2px solid rgba(40, 69, 109);
+  text-align: center;
+  position: absolute;
+  right: 1%;
+  tr:nth-child(2n){
+    background: linear-gradient(to right, rgb(97, 157, 204), rgba(28, 103, 161, 0.2));
+    &:nth-child(2n){
+      background: linear-gradient(to right, rgb(49, 90, 164), rgba(4, 36, 94, 0.2));
+    }
+  }
+  th{
+    background-color: rgba(54, 121, 213);
+    padding: 3px;
+  }
 }
+/*定义滚动条高宽及背景
+ 高宽分别对应横竖滚动条的尺寸*/
+::-webkit-scrollbar
+{
+  width:5px;
+  /*background-color:#F5F5F5;*/
+}
+/*定义滚动条轨道
+ 内阴影+圆角*/
+::-webkit-scrollbar-track
+{
+  border-radius:10px;
+}
+/*定义滑块
+ 内阴影+圆角*/
+::-webkit-scrollbar-thumb
+{
+  border-radius:10px;
+  background-color:rgba(191, 192, 196,0.25);
+}
+::-webkit-scrollbar-thumb:hover
+{
+  background-color:rgba(191, 192, 196,0.4);
+}
+
 #provchart{
   display: inline-block;
+
 }
 
 ul{
@@ -219,5 +271,15 @@ ul{
 }
 li{
   list-style: none;
+}
+select{
+  border: 3px solid rgb(53, 86, 134);
+  background-color: transparent;
+  color: #dddddd;
+  font-size: 16px;
+  width: 85px;
+}
+option{
+  background-color: rgb(29, 55, 100);
 }
 </style>
