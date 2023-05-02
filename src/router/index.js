@@ -12,39 +12,66 @@ const routes = [
     path: "/",
     name: "home",
     component: Homepage,
+    meta:{
+      title:"绿箱循"
+    }
   },
   {
     path: "/homepage",
     component: Homepage,
+    meta:{
+      title:"绿箱循"
+    }
   },
   {
     path: "/policy",
     component: Policy,
+    meta:{
+      title:"绿箱循——政策展示"
+    }
   },
   {
     path: "/process",
     component: Process,
+    meta:{
+      title:"绿箱循——知识科普"
+    }
   },
   {
     path: "/info",
     component: Info,
+    meta:{
+      title:"绿箱循——数据展示"
+    }
   },
 
   {
     path:"/process/tape",
-    component:Tape
+    component:Tape,
+    meta:{
+      title:"绿箱循——胶带"
+    }
   },
   {
     path:"/process/bag",
-    component:Bag
+    component:Bag,
+    meta:{
+      title:"绿箱循——塑料袋"
+    }
   },
   {
     path:"/process/box",
-    component:Box
+    component:Box,
+    meta:{
+      title:"绿箱循——纸箱"
+    }
   },
   {
     path:"/process/filler",
-    component:Filler
+    component:Filler,
+    meta:{
+      title:"绿箱循——缓冲气柱袋"
+    }
   }
 ];
 

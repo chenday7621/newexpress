@@ -30,7 +30,7 @@ export default {
         newText='全国快递业务收入发展'
         text.value=selects[1]
       }
-      // let chart = echart.init(document.getElementById("buschart"));
+      let chart = echarts.init(document.getElementById("buschart"));
       chart.setOption({
         series:[
           {data:newData}

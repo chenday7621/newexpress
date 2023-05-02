@@ -54,21 +54,22 @@ export default {
   /*background-size: 100% 100%;*/
   /*opacity: 0.8;*/
   width: 30%;
-  margin: 0 auto;
+  /*margin: 0 auto;*/
   /*box-shadow: 0 0 15px 20px inset rgba(67, 172, 200, 0.2);*/
 
   /*text-align: center;*/
   overflow-y: scroll;
   height: 90vh;
   position: absolute;
-  right: 0;
+  top: 5%;
+  right: 7%;
 }
 h1{
   /*color: black;*/
   margin-top: 30px;
   margin-left: auto;
-  color: black;
-  font-family: '华文中宋';
+  color: rgba(0,0,0,0.7);
+  font-family: 'Inter';
   font-size: 2.5em;
 }
 .title{
@@ -124,7 +125,7 @@ select{
   width: 84px;
   height: 32px;
   font-size: 14px;
-  color: black;;
+  color: black;
   text-align: center;
   border: 1px #817e7e solid;
   border-radius: 5px;

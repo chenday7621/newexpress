@@ -2,8 +2,8 @@
   <div id="main">
     <BackHome/>
     <div class="pbody">
-<!--      <WordCloud/>-->
-      <wc/>
+      <WordCloud/>
+<!--      <wc/>-->
       <PolicyList/>
     </div>
   </div>
@@ -12,10 +12,9 @@
 import BackHome from "@/components/BackHome";
 import WordCloud from "@/components/WordCloud";
 import PolicyList from "@/components/PolicyList";
-import wc from '@/components/wc'
 export default {
   components:{
-    BackHome,WordCloud,PolicyList,wc
+    BackHome,WordCloud,PolicyList
   }
 };
 </script>

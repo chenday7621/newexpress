@@ -2,8 +2,8 @@
   <div id="fore2" style="width:62vw; height:75vh"></div>
   <div class="selecting">
     <select v-model="myOpt" @change="changeType">
-      <option value="0">预测数据：10个</option>
-      <option value="1">预测数据：15个</option>
+      <option value="0">回测及预测数据：10个</option>
+      <option value="1">回测及预测数据：15个</option>
     </select>
   </div>
 </template>
@@ -549,7 +549,7 @@ select{
   background-color: transparent;
   color: #dddddd;
   font-size: 16px;
-  width: 20vh;
+  width: 25vh;
   height: 6vh;
 }
 option{
@@ -557,7 +557,7 @@ option{
 }
 .selecting{
   position: absolute;
-  right: 20vw;
+  right: 18vw;
   top: 9vh;
 }
 </style>

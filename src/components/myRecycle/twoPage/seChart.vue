@@ -4,14 +4,16 @@
   <div id="rtchart2"  style="width:50vw; height:80vh"></div>
 
   <div class="myoptions">
-    <div @click="change(0)" :class="{active:num==0,'antiactive':num!=0}"></div>
-    <div @click="change(1)" :class="{active:num==1,'antiactive':num!=1}"></div>
+<!--    <div @click="change(0)" :class="{active:num==0,'antiactive':num!=0}"></div>-->
+<!--    <div @click="change(1)" :class="{active:num==1,'antiactive':num!=1}"></div>-->
+    <img @click="change(0)" :src="require(`@/assets/imgs/knowle/${options[0]}.png`)" alt=""/>
+    <img @click="change(1)" :src="require(`@/assets/imgs/knowle/${options[1]}.png`)" alt=""/>
   </div>
 </template>
 
 <script>
 import * as echarts from "echarts";
-import {onMounted} from "vue";
+import { onMounted, reactive } from "vue";
 import {ref} from "vue";
 
 export default {
@@ -53,15 +55,20 @@ export default {
     let titles=['各地塑料包装材料消耗量','各地纸类包装材料消耗量']
     let subTexts=['塑料类/万吨','纸类/万吨']
     let num=ref(0)
+    const options=reactive(['selected','unselected'])
     function change(n){
       num.value=n
+      for (let i=0;i<2;i++){
+        options[i]='unselected'
+      }
+      options[num.value]='selected'
       let chart1 = echarts.init(document.getElementById("rtchart1"))
       let newdata=suData
       let newText=subTexts[num.value]
       if(num.value==1){
         newdata=zhiData
       }
-      console.log(newdata);
+      // console.log(newdata);
       chart1.setOption({
         title:{
           text:titles[num.value],
@@ -209,7 +216,7 @@ export default {
     //   charts.resize();
     // });
     return{
-      num,change
+      num,change,options
     }
   }
 }
@@ -217,10 +224,10 @@ export default {
 
 <style scoped lang="less">
 .myoptions{
-  div{
-    width: 3vh;
-    height: 3vh;
-    border-radius: 50%;
+  img{
+    width: 4vh;
+    height: 4vh;
+    display: block;
     &:hover{
       cursor: pointer;
     }
@@ -230,12 +237,6 @@ export default {
   position: absolute;
   left: 20%;
   top: 10%;
-}
-.active{
-  background-color: rgb(160, 183, 247);
-}
-.antiactive{
-  background-color: #a19e9e;
 }
 #rtchart1{
   margin: 0 auto;

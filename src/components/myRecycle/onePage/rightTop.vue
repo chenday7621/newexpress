@@ -6,8 +6,10 @@
     <div id="sangchart1"  style="width:28vw; height:35vh" v-show="num===0"></div>
     <div id="sangchart2"  style="width:28vw; height:35vh" v-show="num===1"></div>
     <div class="myoptions">
-      <div @click="change(0)" :class="{active:num===0,'antiactive':num!=0}"></div>
-      <div @click="change(1)" :class="{active:num===1,'antiactive':num!=1}"></div>
+<!--      <div @click="change(0)" :class="{active:num===0,'antiactive':num!=0}"></div>-->
+<!--      <div @click="change(1)" :class="{active:num===1,'antiactive':num!=1}"></div>-->
+      <img @click="change(0)" :src="require(`@/assets/imgs/knowle/${options[0]}.png`)" alt=""/>
+      <img @click="change(1)" :src="require(`@/assets/imgs/knowle/${options[1]}.png`)" alt=""/>
     </div>
   </div>
 </template>
@@ -15,13 +17,18 @@
 <script>
 
 import * as echarts from "echarts";
-import {onMounted,ref} from "vue";
+import { onMounted, reactive, ref } from "vue";
 export default {
   name: "rightMid",
   setup(){
     let num=ref(0)
+    const options=reactive(['selected','unselected'])
     function change(n){
       num.value=n
+      for (let i=0;i<2;i++){
+        options[i]='unselected'
+      }
+      options[num.value]='selected'
     }
     function initChart(){
       let chart1 = echarts.init(document.getElementById("sangchart1"));
@@ -350,7 +357,7 @@ export default {
       initChart()
     })
     return{
-      num,change
+      num,change,options
     }
   }
 }
@@ -379,11 +386,13 @@ export default {
   position: absolute;
   right: 30vw;
   top: 11vw;
-div {
-  width: 2vh;
-  height: 2vh;
+
+img {
+  width: 2.5vh;
+  height: 2.5vh;
   border-radius: 50%;
   margin-top: 3vh;
+  display: block;
 &:hover {
    cursor: pointer;
  }
@@ -406,13 +415,6 @@ h1{
   font-weight: 550;
   font-size: 2.4vh;
   display: inline-block;
-}
-.active {
-  background-color: rgb(160, 183, 247);
-}
-
-.antiactive {
-  background-color: rgb(120, 124, 126);
 }
 //*{
 //  border: 1px solid red;

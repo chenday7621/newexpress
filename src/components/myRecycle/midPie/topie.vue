@@ -20,7 +20,7 @@ export default {
         },
         series: [
           {
-            name: 'Access From',
+            name: '快递包装组成材料',
             type: 'pie',
             radius: '70%',
             label:{

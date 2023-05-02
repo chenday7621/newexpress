@@ -31,7 +31,7 @@ function initChart() {
             left: "center",
             top:'4%',
             // 标题
-            text: '快递包装材料全生命期碳排因子',
+            text: '不同快递包裹的碳足迹',
             textStyle: {
               color:'rgb(78,156,182)',
             },

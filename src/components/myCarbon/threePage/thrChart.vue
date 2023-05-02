@@ -26,7 +26,7 @@ export default {
           }
         },
         legend: {
-          data: ['1', '2', ],
+          data: ['碳排放量', '占比', ],
           textStyle:{color:'#ccc',
           },
           bottom: 10,
@@ -54,7 +54,7 @@ export default {
         yAxis: [
           {
             type: 'value',
-            name: '1',
+            name: '碳排放量',
             // min: 0,
             // max: 250,
             // interval: 50,
@@ -69,7 +69,7 @@ export default {
           },
           {
             type: 'value',
-            name: '2',
+            name: '占比',
             // min: 0,
             // max: 25,
             // interval: 5,
@@ -85,7 +85,7 @@ export default {
         ],
         series: [
           {
-            name: '1',
+            name: '碳排放量',
             type: 'bar',
             tooltip: {
               valueFormatter: function (value) {
@@ -104,7 +104,7 @@ export default {
             }
           },
           {
-            name: '2',
+            name: '占比',
             type: 'line',
             yAxisIndex: 1,
             tooltip: {

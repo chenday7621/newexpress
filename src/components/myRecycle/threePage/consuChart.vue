@@ -3,9 +3,9 @@
   <div id="consuchart2" style="width:75vw; height:75vh" v-show="myOption===1"></div>
   <div id="consuchart3" style="width:75vw; height:75vh" v-show="myOption===2"></div>
   <div class="myoptions">
-    <div @click="change(0)" :class="{active:myOption===0,'antiactive':myOption!=0}"></div>
-    <div @click="change(1)" :class="{active:myOption===1,'antiactive':myOption!=1}"></div>
-    <div @click="change(2)" :class="{active:myOption===2,'antiactive':myOption!=2}"></div>
+    <img @click="change(0)" :src="require(`@/assets/imgs/knowle/${options[0]}.png`)" alt=""/>
+    <img @click="change(1)" :src="require(`@/assets/imgs/knowle/${options[1]}.png`)" alt=""/>
+    <img @click="change(2)" :src="require(`@/assets/imgs/knowle/${options[2]}.png`)" alt=""/>
   </div>
 <!--  <div class="selecting"  v-show="myOption===2">-->
 <!--    <select v-model="mySelect" @change="selectChange" >-->
@@ -16,17 +16,20 @@
 
 <script>
 import * as echarts from "echarts";
-import { onMounted } from "vue";
+import { onMounted, reactive } from "vue";
 import { ref } from "vue";
 
 export default {
   setup() {
-    let options=['强制回收','强制建立可循环回收体系','强制使用绿色包装']
     let myOption = ref(0);
     // let mySelect=ref(0)
-
+    const options=reactive(['selected','unselected','unselected'])
     function change(n) {
       myOption.value = n;
+      for (let i=0;i<3;i++){
+        options[i]='unselected'
+      }
+      options[myOption.value]='selected'
     }
 
     // function selectChange(){
@@ -217,7 +220,7 @@ export default {
       initChart();
     });
     return {
-      myOption, change,
+      myOption, change,options
     };
   }
 };
@@ -225,10 +228,10 @@ export default {
 
 <style scoped lang="less">
 .myoptions {
-  div {
-    width: 3vh;
-    height: 3vh;
-    border-radius: 50%;
+  img {
+    width: 4vh;
+    height: 4vh;
+    display: block;
 
     &:hover {
       cursor: pointer;
@@ -248,6 +251,7 @@ export default {
 
 .antiactive {
   background-color: rgb(120, 124, 126);
+
 }
 
 #consuchart1, #consuchart2, #consuchart3 {

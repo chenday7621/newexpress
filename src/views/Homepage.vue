@@ -1,5 +1,4 @@
 <template>
-
     <div id="root">
       <video id="mp4" autoplay muted loop>
         <source src="@/assets/imgs/hombg.mp4" type="video/mp4">
@@ -7,6 +6,7 @@
 <!--      <background-particles/>-->
       <div id="title1">
         <h1>《 绿 箱 循 》</h1>
+        <br><br>
         <div id="num2"><h2>——基于“绿色革命”政策的快递行业发展及包装回收数据可视化平台</h2></div>
       </div>
       <img id="icon1" src="@/assets/imgs/homicon.png" alt="">
@@ -37,7 +37,7 @@
           <span>地址：北京市海淀区中关村南大街27号</span>
         </div>
         <div class="sec">
-          <span>特别声明 | 本平台所使用的地图均来自echarts官方资源库，地图网址为https://github.com/apache/echarts/tree/master/test/data/map/json</span>
+          <span>特别声明 | 本平台所使用的地图均来自Echarts官方资源库，地图网址为https://github.com/apache/echarts/tree/master/test/data/map/json</span>
         </div>
       </div>
       </div>
@@ -128,7 +128,7 @@ body{
   }
   h2{
     font-size:2.6vw;
-    width: 65vw;
+    width: 63vw;
     text-align: right;
     margin-left: 18%;
   }
