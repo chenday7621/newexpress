@@ -112,7 +112,7 @@ export default {
       let charts = echarts.init(document.querySelector(`#fore2`));
       charts.setOption({
         title: {
-          text: '快递包装全生命周期碳排放量预测',
+          text: '快递业务量预测',
           textStyle: {
             fontSize: 25,
             color: "#fff",
